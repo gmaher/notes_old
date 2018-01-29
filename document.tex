@@ -1,0 +1,72 @@
+\documentclass[12pt,a4paper]{book}
+\usepackage[margin=3cm]{geometry}
+\usepackage{parskip}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{bm} %use \bm for bold symbols
+\usepackage{multirow}
+\usepackage{multicol} %for using multirow and multicol commands in tables
+\usepackage{appendix} %for using the \appendix command to start appendices
+\usepackage[neverdecrease]{paralist} %allows using enumerate and itemize envs in paragraphs and customizing the symbols
+\usepackage{graphicx} %allows including figures with \begin{figure}
+\usepackage{hyperref} %makes references hyperlinks
+\usepackage[Gray,squaren,thinqspace,thinspace]{SIunits} %provides support for using SIunits in spacing
+\usepackage{eurosym} %allows using \euro symbol
+\usepackage{subcaption}
+%\begin{figure}
+%	\begin{subfigure}[b]{.5\linewidth}
+%		\centering\large A
+%		\caption{A subfigure}\label{fig:1a}
+%	\end{subfigure}%
+%	\begin{subfigure}[b]{.5\linewidth}
+%		\centering\large B
+%		\caption{Another subfigure}\label{fig:1b}
+%	\end{subfigure}
+%	\caption{A figure}\label{fig:1}
+%\end{figure}
+
+\usepackage{morefloats} %allows using more than 18 floats?
+\usepackage{pdfpages} %allows including pdf documents via \includepdf
+\usepackage{fancyhdr} %allows easy customization of headers and footers
+\usepackage{algpseudocode} %allows algorithms to be defined with \begin{algorithm}
+\pagestyle{fancy}
+\input{header.tex}
+
+\fancyhf{}
+%\chead{3D Coronary Vessel and Heart Modeling with Deep Learning - \today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{
+	{\LARGE \bfseries Notes}
+	%\\{\Large\bfseries Project Subtitle}
+	\thanks{This document contains my notes on miscellaneous topics.}
+}
+\author{
+Gabriel Maher \\
+%\and
+% Second Author \thanks{blah blah} \\ Yolo University 	
+}
+
+\date{
+	\today
+}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+
+%\include{introduction}
+
+\part{Mathematics}
+\include{mathematics/main}
+
+
+\bibliography{bib}
+\bibliographystyle{plain}
+\end{document}

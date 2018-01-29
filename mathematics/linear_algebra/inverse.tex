@@ -1,0 +1,59 @@
+\section{Matrix Inverse Formulas}
+This chapter contains formulas for the inverses of various sums of matrices.
+
+\subsection{Inverse of $A+B$}
+Let $C+D$ be the inverse of $A+B$, then
+\begin{align}
+(C+D)(A+B) &= I \nonumber \\
+\Rightarrow CA + CB + DA + DB &= I.
+\end{align}
+Now let $C=A^{-1}$, then
+\begin{align}
+A^{-1}A + A^{-1}B + DA + DB & = I \nonumber \\
+\Rightarrow A^{-1}B + DA + DB & = 0.
+\end{align}
+Now let $D=A^{-1}MA^{-1}$, then
+\begin{align}
+A^{-1}B + A^{-1}M + A^{-1}MA^{-1}B & = 0 \nonumber \\
+\Rightarrow A^{-1}\left(B + M + MA^{-1}B\right) &= 0 \nonumber \\
+\Rightarrow B + M + MA^{-1}B & = 0.
+\end{align}
+Now let $M=BFB$, then
+\begin{align}
+B + BFB + BFBA^{-1}B & = 0 \nonumber \\
+\Rightarrow B\left(I + FB + FBA^{-1}B\right) &= 0 \nonumber \\
+\Rightarrow I+FB+FBA^{-1}B & = 0 \nonumber \\
+\Rightarrow F(B+BA^{-1}B) &= -I \nonumber \\
+\Rightarrow F &= (B+BA^{-1}B)^{-1}.
+\end{align}
+Therefore $D=A^{-1}B(B+BA^{-1}B)^{-1}BA^{-1}$. Substituting for $C$ and $D$, the inverse of $A+B$ is then
+\begin{equation}
+(A+B)^{-1} = A^{-1} - A^{-1}B(B+BA^{-1}B)^{-1}BA^{-1}
+\label{linalg:invaplusb}
+\end{equation}
+Note that \eqref{linalg:invaplusb} only requires $A$ to be invertible. If $B$ is invertible \eqref{linalg:invaplusb} can be simplified to
+\begin{equation}
+(A+B)^{-1} = A^{-1} - A^{-1}B(I+A^{-1}B)^{-1}A^{-1}
+\end{equation}
+or
+\begin{equation}
+(A+B)^{-1} = A^{-1} - A^{-1}(I+BA^{-1})BA^{-1}
+\end{equation}
+
+\section{Inverse of $A+BCD$}
+Using \eqref{linalg:invaplusb}
+\begin{align}
+(A+BCD)^{-1} &= A^{-1}-A^{-1}BCD(BCD + BCDA^{-1}BCD)^{-1}BCDA^{-1} \nonumber \\
+&= A^{-1} + A^{-1}BCD(BC(D+DA^{-1}BCD))^{-1}BCDA^{-1} \nonumber \\
+&= A^{-1} + A^{-1}BCD(D+DA^{-1}BCD)DA^{-1} \nonumber \\
+&= A^{-1} + A^{-1}BCD((D(CD)^{-1}+DA^{-1}B)CD)^{-1}DA^{-1} \nonumber \\
+&= A^{-1} + A^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1}
+\end{align}
+
+\section{Inverse of $AB+CD$}
+Using \eqref{linalg:invaplusb}
+\begin{align}
+(AB+CD)^{-1} &= B^{-1}A^{-1} - (AB)^{-1}CD(CD+CD(AB)^{-1}CD)^{-1}CD(AB)^{-1} \nonumber \\
+&= B^{-1}A^{-1} - B^{-1}A^{-1}CD(CD(I+(AB)^{-1}CD))^{-1}CDB^{-1}A^{-1} \nonumber \\
+&= B^{-1}A^{-1} - B^{-1}A^{-1}CD(I+B^{-1}A^{-1}CD)^{-1}B^{-1}A^{-1}
+\end{align}
