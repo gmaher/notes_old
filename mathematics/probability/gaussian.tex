@@ -1,0 +1,54 @@
+\section{Gaussian Distributions}
+
+\subsection{Conditional Multivariate Gaussian Distribution}
+The PDF of a multivariate Gaussian vector is given by
+\begin{equation}
+P(\bm{x}) = \frac{1}{\sqrt{2\pi |\Sigma|}}e^{(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu})}.
+\end{equation}
+Let
+\begin{equation}
+\bm{x} = \begin{bmatrix}
+\bm{x}_1 \\
+\bm{x}_2
+\end{bmatrix},
+\end{equation}
+and let $\bm{x}_2$ be given. We then wish to find $P(\bm{x}_1|\bm{x}_2)$, the conditional distribution of $\bm{x}_1$ given $\bm{x}_2$. To do this we need to find the block form of $\Sigma^{-1}$.
+
+Let
+\begin{equation}
+\Sigma = \begin{bmatrix}
+A & B \\
+B^T & C
+\end{bmatrix},\ 
+\Sigma^{-1} = \begin{bmatrix}
+\tilde{A} & \tilde{B} \\
+\tilde{B}^T & \tilde{C}
+\end{bmatrix}
+\end{equation}.
+Using $\Sigma \Sigma^{-1}=I$ we then end up with the following four equations:
+\begin{align}
+A\tilde{A}+B\tilde{B}^T &= I, \label{prob:cond:sig1} \\
+A\tilde{B} + B\tilde{C} &= 0, \label{prob:cond:sig2}\\
+B^T\tilde{A} + C\tilde{B}^T &= 0, \label{prob:cond:sig3}\\
+B^T\tilde{B} + C\tilde{C} &= I. \label{prob:cond:sig4}
+\end{align}
+From \eqref{prob:cond:sig2} and \eqref{prob:cond:sig3} we obtain
+\begin{equation}
+\tilde{B} = -A^{-1}B\tilde{C},\ \tilde{B}^T=-C^{-1}B^T\tilde{A}
+\end{equation}
+Then inserting into \eqref{prob:cond:sig1} and \eqref{prob:cond:sig4} we get
+\begin{equation}
+(A-BC^{-1}B^T)\tilde{A} = I \Rightarrow \tilde{A} = (A-BC^{-1}B^T)^{-1}
+\end{equation}
+\begin{equation}
+(C-B^TA^{-1}B)\tilde{C} = I \Rightarrow \tilde{C} = (C-B^TA^{-1}B)^{-1}
+\end{equation}
+Using \eqref{linalg:invaplusb} we then have
+\begin{align}
+\tilde{A} &= A^{-1}-A^{-1}B(C+(-B^T)A^{-1}B)^{-1}(-B^T)A^{-1} \nonumber \\
+&= A^{-1} + A^{-1}B(C-B^TA^{-1}B)^{-1}B^TA^{-1}
+\end{align}
+\begin{align}
+\tilde{C} &= C^{-1} - C^{-1}(-B^T)(A+BC^{-1}(-B^T))^{-1}BC^{-1} \nonumber \\
+&= C^{-1} + C^{-1}B^T(A-BC^{-1}B^T)^{-1}BC^{-1}
+\end{align}
