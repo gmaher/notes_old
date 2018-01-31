@@ -52,3 +52,34 @@ Using \eqref{linalg:invaplusb} we then have
 \tilde{C} &= C^{-1} - C^{-1}(-B^T)(A+BC^{-1}(-B^T))^{-1}BC^{-1} \nonumber \\
 &= C^{-1} + C^{-1}B^T(A-BC^{-1}B^T)^{-1}BC^{-1}
 \end{align}
+
+Using the block form $\Sigma^{-1}$,
+\begin{align}
+(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu}) &= (\bm{x}_1-\bm{\mu}_1)^T(A-BC^{-1}B^T)^{-1}(\bm{x}_1-\bm{\mu}_1) \nonumber \\
+&-2(\bm{x}_1-\bm{\mu}_1)^T(A-BC^{-1}B^T)^{-1}BC^{-1}(\bm{x}_2-\bm{\mu}_2) \nonumber \\
+&+(\bm{x}_2-\bm{\mu}_2)^T(C^{-1}+C^{-1}B^T(A-BC^{-1}B^T)BC^{-1})(\bm{x}_2-\bm{\mu}_2).
+\end{align}
+Letting $(A-BC^{-1}B^T) = H$ and $BC^{-1}(\bm{x}_2-\bm{\mu}_2)=\bm{b}$ we then have
+\begin{align}
+(\bm{x}-\bm{\mu})^T\Sigma^{-1}(\bm{x}-\bm{\mu}) &= (\bm{x}_2-\bm{\mu}_2)^TC^{-1}(\bm{x}_2-\bm{\mu}_2) \nonumber \\
+&+(\bm{x}_1-\bm{\mu}_1-\bm{b})^TH^{-1}(\bm{x}_1-\bm{\mu}_1-\bm{b}).
+\label{prob:cond:exponent}
+\end{align}
+Using \eqref{prob:cond:exponent} we can write the joint density of $\bm{x}_1$ and $\bm{x}_2$ as
+\begin{equation}
+P(\bm{x}_1,\bm{x}_1) = \frac{1}{D}e^{(\bm{x}_2-\bm{\mu}_2)^TC^{-1}(\bm{x}_2-\bm{\mu}_2) +(\bm{x}_1-\bm{\mu}_1-\bm{b})^TH^{-1}(\bm{x}_1-\bm{\mu}_1-\bm{b})}.
+\end{equation}
+From which it follows that
+\begin{equation}
+P(\bm{x}_2) = \intt{}{}{P(\bm{x}_1,\bm{x}_1)}{\bm{x}_1} = \frac{M}{D}e^{(\bm{x}_2-\bm{\mu}_2)^TC^{-1}(\bm{x}_2-\bm{\mu}_2)}
+\end{equation}
+Using Bayes' theorem, the conditional density of $\bm{x}_1$, given $\bm{x}_2$, is then
+\begin{equation}
+P(\bm{x}_1|\bm{x}_2)=\frac{P(\bm{x}_1,\bm{x}_2)}{P(\bm{x}_2)} = \frac{1}{M}e^{(\bm{x}_1-\bm{\mu}_1-\bm{b})^TH^{-1}(\bm{x}_1-\bm{\mu}_1-\bm{b})}.
+\end{equation}
+So we see that the distribution of $\bm{x}_1|\bm{x}_2$ is
+\begin{equation}
+(\bm{x}_1|\bm{x}_2) \sim N(\bm{\mu}_1+BC^{-1}(\bm{x}_2-\bm{\mu}_2), (A-BC^{-1}B^T))
+\end{equation}
+
+Note that since $\Sigma$ is positive definite, then $C$ and $C^{-1}$ are positive definite. Therefore $A-BC^{-1}B$ is smaller than $A$ in some sense and $\bm{x}_1|\bm{x}_2$ will have smaller variance depending on the correlation matrix $B$. Additionally the maximum likelihood estimate for $\bm{x}_1|\bm{x}_2$ is simply $\bm{\mu}_1+BC^{-1}(\bm{x}_2-\bm{\mu}_2)$, the conditional mean.
